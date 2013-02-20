@@ -28,7 +28,9 @@
         </ul>
       </header>
       <section>
-        <h1>Facebook comments</h1>
+        <h1>Social media</h1>
+
+<h2>Facebook comments</h2>
 
 <p>Facebook's <a href="http://developers.facebook.com/docs/reference/plugins/comments/">Comment Box</a> is a social plugin that allows users to add comments to web content. For example, have a look at <a href="http://www.facebook.com/photo.php?fbid=10151435566046749">Barack Obama's Plan</a> on Facebook, which has received, at the time of writing, over 25'000 comments.</p>
 
@@ -36,7 +38,7 @@
 
 <h2>Get the comments</h2>
 
-<p>Facebook's comments are displayed in web browser in a human-friendly way, but they are also publicly available in a computer-friendly format called <a href="http://www.json.org/">JSON</a>. To retrieve them, we need to find out the Facebook-ID of the object (in our case, the image with President Obama's plan) to which the comments are attached. The URL of the image is the following: <code>http://www.facebook.com/photo.php?fbid=10151435566046749</code>. The Facebook ID is the long number that follows <code>fbid=</code>. If you now compose the following URL: <code>https://graph.facebook.com/comments/?id=10151435566046749</code>, you'll get a long list of comments in the following format:</p>
+<p>Facebook's comments are displayed in web browser in a human-friendly way, but they are also publicly available in a computer-friendly format called <a href="http://www.json.org/">JSON</a>. To retrieve them, we need to find out the Facebook-ID of the object (in our case, the image with President Obama's plan) to which the comments are attached. The URL of the image is the following: <a href="http://www.facebook.com/photo.php?fbid=10151435566046749">http://www.facebook.com/photo.php?fbid=10151435566046749</a>. The Facebook ID is the long number that follows <code>fbid=</code>. If you now compose the following URL: <a href="https://graph.facebook.com/comments/?id=10151435566046749">https://graph.facebook.com/comments/?id=10151435566046749</a>, you'll get a long list of comments in the following format:</p>
 
 <div class="highlight"><pre><span class="p">{</span>
       <span class="nt">"id"</span><span class="p">:</span> <span class="s2">"10151435566046749_..."</span><span class="p">,</span>
