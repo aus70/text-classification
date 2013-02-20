@@ -36,33 +36,33 @@
 
 <h2>Get the comments</h2>
 
-<p>Facebook's comments are displayed in web browser in a human-friendly way, but they are also publicly available in a computer-friendly format called <a href="http://www.json.org/">JSON</a>. To retrieve them, we need to find out the Facebook-ID of the object (in our case, the image with President Obama's plan) to which the comments are attached. The URL of the image is the following: <code>http://www.facebook.com/photo.php?fbid=10151435566046749</code>. The Facebook ID is the long number that follows <code>fbid=</code>. If you now compose the following URL: <code>https://graph.facebook.com/comments/?id=10151435566046749</code>, you'll get a log list of comments in the following format:</p>
+<p>Facebook's comments are displayed in web browser in a human-friendly way, but they are also publicly available in a computer-friendly format called <a href="http://www.json.org/">JSON</a>. To retrieve them, we need to find out the Facebook-ID of the object (in our case, the image with President Obama's plan) to which the comments are attached. The URL of the image is the following: <code>http://www.facebook.com/photo.php?fbid=10151435566046749</code>. The Facebook ID is the long number that follows <code>fbid=</code>. If you now compose the following URL: <code>https://graph.facebook.com/comments/?id=10151435566046749</code>, you'll get a long list of comments in the following format:</p>
 
-<pre><code> {
-    "id": "10151435566046749_...",
-    "from": {
-        "name": "...",
-        "id": "..."
-        },
-    "message": "...",
-    "can_remove": false,
-    "created_time": "2013-02-20T08:01:23+0000",
-    "like_count": 0,
-    "user_likes": false
-}
-</code></pre>
+<div class="highlight"><pre><span class="p">{</span>
+      <span class="nt">"id"</span><span class="p">:</span> <span class="s2">"10151435566046749_..."</span><span class="p">,</span>
+      <span class="nt">"from"</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"..."</span><span class="p">,</span>
+          <span class="nt">"id"</span><span class="p">:</span> <span class="s2">"..."</span>
+          <span class="p">},</span>
+      <span class="nt">"message"</span><span class="p">:</span> <span class="s2">"..."</span><span class="p">,</span>
+      <span class="nt">"can_remove"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="nt">"created_time"</span><span class="p">:</span> <span class="s2">"2013-02-20T08:01:23+0000"</span><span class="p">,</span>
+      <span class="nt">"like_count"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="nt">"user_likes"</span><span class="p">:</span> <span class="kc">false</span>
+<span class="p">}</span>
+</pre></div>
 
 <p>Comments in this data format can be easily retrieved and parsed by using a few lines of Python:</p>
 
-<pre><code>import requests
-import simplejson as json
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">simplejson</span> <span class="kn">as</span> <span class="nn">json</span>
 
-FACEBOOK_GRAPH_COMMENTS_URL = 'https://graph.facebook.com/comments/'
-params = {'id': '10151435566046749', 'limit': 10}
+<span class="n">FACEBOOK_GRAPH_COMMENTS_URL</span> <span class="o">=</span> <span class="s">'https://graph.facebook.com/comments/'</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">'id'</span><span class="p">:</span> <span class="s">'10151435566046749'</span><span class="p">,</span> <span class="s">'limit'</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
 
-response = requests.get(FACEBOOK_GRAPH_COMMENTS_URL, params=params)
-comments = response.json()
-</code></pre>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">FACEBOOK_GRAPH_COMMENTS_URL</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+<span class="n">comments</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</pre></div>
 
 <p>The comments object contains the latest 10 comments.</p>
       </section>
