@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Text-classification by alessandrousseglioviretta</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Text-classification</h1>
+        <p>How to retrieve and classify text from various sources</p>
+
+        <p class="view"><a href="https://github.com/alessandrousseglioviretta/text-classification">View the Project on GitHub <small>alessandrousseglioviretta/text-classification</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/alessandrousseglioviretta/text-classification/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/alessandrousseglioviretta/text-classification/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/alessandrousseglioviretta/text-classification">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>Facebook comments</h1>
+
+<p>Facebook's <a href="http://developers.facebook.com/docs/reference/plugins/comments/">Comment Box</a> is a social plugin that allows users to add comments to web content. For example, have a look at <a href="http://www.facebook.com/photo.php?fbid=10151435566046749">Barack Obama's Plan</a> on Facebook, which has received, at the time of writing, over 25'000 comments.</p>
+
+<p>Clearly, reading thousands of comments one by one is not a viable solution to the problem of social media monitoring. I'm going to show how to retrieve and automatically classify Facebook comments. In this example, I'm going to use Python, a widespread general-purpose, high-level programming language.</p>
+
+<h2>Get the comments</h2>
+
+<p>Facebook's comments are displayed in web browser in a human-friendly way, but they are also publicly available in a computer-friendly format called <a href="http://www.json.org/">JSON</a>. To retrieve them, we need to find out the Facebook-ID of the object (in our case, the image with President Obama's plan) to which the comments are attached. The URL of the image is the following: <code>http://www.facebook.com/photo.php?fbid=10151435566046749</code>. The Facebook ID is the long number that follows <code>fbid=</code>. If you now compose the following URL: <code>https://graph.facebook.com/comments/?id=10151435566046749</code>, you'll get a log list of comments in the following format:</p>
+
+<pre><code> {
+    "id": "10151435566046749_...",
+    "from": {
+        "name": "...",
+        "id": "..."
+        },
+    "message": "...",
+    "can_remove": false,
+    "created_time": "2013-02-20T08:01:23+0000",
+    "like_count": 0,
+    "user_likes": false
+}
+</code></pre>
+
+<p>Comments in this data format can be easily retrieved and parsed by using a few lines of Python:</p>
+
+<pre><code>import requests
+import simplejson as json
+
+FACEBOOK_GRAPH_COMMENTS_URL = 'https://graph.facebook.com/comments/'
+params = {'id': '10151435566046749', 'limit': 10}
+
+response = requests.get(FACEBOOK_GRAPH_COMMENTS_URL, params=params)
+comments = response.json()
+</code></pre>
+
+<p>The comments object contains the latest 10 comments.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/alessandrousseglioviretta">alessandrousseglioviretta</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
