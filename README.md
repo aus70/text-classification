@@ -1,4 +1,4 @@
 text-classification
 ===================
 
-How to retrieve and classify text from various sources
+How to retrieve, analyze and classify text from various sources
