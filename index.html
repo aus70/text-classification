@@ -34,39 +34,11 @@
 
 <p>Facebook's <a href="http://developers.facebook.com/docs/reference/plugins/comments/">Comment Box</a> is a social plugin that allows users to add comments to web content. For example, have a look at <a href="http://www.facebook.com/photo.php?fbid=10151435566046749">Barack Obama's Plan</a> on Facebook, which has received, at the time of writing, over 25'000 comments.</p>
 
-<p>Clearly, reading thousands of comments one by one is not a viable solution to the problem of social media monitoring. I'm going to show how to retrieve and automatically classify Facebook comments. In this example, I'm going to use Python, a widespread general-purpose, high-level programming language.</p>
+<p>Clearly, reading thousands of comments one by one is not a viable solution to the problem of social media monitoring. I'm going to show how to retrieve and automatically classify Facebook comments. In this example, I'm going to use Python, a widespread general-purpose, high-level programming language. See more on the <a href="https://github.com/alessandrousseglioviretta/text-classification/wiki/Social-media-analytics:-Facebook-comments">wiki</a>.</p>
 
-<h2>Get the comments</h2>
+<h2>RSS feeds from Google Alerts</h2>
 
-<p>Facebook's comments are displayed in web browser in a human-friendly way, but they are also publicly available in a computer-friendly format called <a href="http://www.json.org/">JSON</a>. To retrieve them, we need to find out the Facebook-ID of the object (in our case, the image with President Obama's plan) to which the comments are attached. The URL of the image is the following: <a href="http://www.facebook.com/photo.php?fbid=10151435566046749">http://www.facebook.com/photo.php?fbid=10151435566046749</a>. The Facebook ID is the long number that follows <code>fbid=</code>. If you now compose the following URL: <a href="https://graph.facebook.com/comments/?id=10151435566046749">https://graph.facebook.com/comments/?id=10151435566046749</a>, you'll get a long list of comments in the following format:</p>
-
-<div class="highlight"><pre><span class="p">{</span>
-      <span class="nt">"id"</span><span class="p">:</span> <span class="s2">"10151435566046749_..."</span><span class="p">,</span>
-      <span class="nt">"from"</span><span class="p">:</span> <span class="p">{</span>
-          <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"..."</span><span class="p">,</span>
-          <span class="nt">"id"</span><span class="p">:</span> <span class="s2">"..."</span>
-          <span class="p">},</span>
-      <span class="nt">"message"</span><span class="p">:</span> <span class="s2">"..."</span><span class="p">,</span>
-      <span class="nt">"can_remove"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-      <span class="nt">"created_time"</span><span class="p">:</span> <span class="s2">"2013-02-20T08:01:23+0000"</span><span class="p">,</span>
-      <span class="nt">"like_count"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="nt">"user_likes"</span><span class="p">:</span> <span class="kc">false</span>
-<span class="p">}</span>
-</pre></div>
-
-<p>Comments in this data format can be easily retrieved and parsed by using a few lines of Python:</p>
-
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">import</span> <span class="nn">simplejson</span> <span class="kn">as</span> <span class="nn">json</span>
-
-<span class="n">FACEBOOK_GRAPH_COMMENTS_URL</span> <span class="o">=</span> <span class="s">'https://graph.facebook.com/comments/'</span>
-<span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">'id'</span><span class="p">:</span> <span class="s">'10151435566046749'</span><span class="p">,</span> <span class="s">'limit'</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
-
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">FACEBOOK_GRAPH_COMMENTS_URL</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
-<span class="n">comments</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-</pre></div>
-
-<p>The comments object contains the latest 10 comments.</p>
+<p>[Google Alerts] enables the creation of automatic email updates of the latest relevant Google results based on your queries. The updates are also offered as RSS feed. If the number of results is too large, you might want to filter the updates so to get only those that fit some additional criteria. With the <a href="http://ghib.li">Ghib.li</a> classification engine, you can train a classifier to filter the news feed according to your wishes.</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/alessandrousseglioviretta">alessandrousseglioviretta</a></p>
@@ -74,6 +46,16 @@
       </footer>
     </div>
     <script src="javascripts/scale.fix.js"></script>
-    
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-38691001-2");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
   </body>
 </html>
