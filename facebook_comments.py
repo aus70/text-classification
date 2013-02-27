@@ -1,5 +1,6 @@
 # Please refer to https://github.com/alessandrousseglioviretta/text-classification/wiki/Facebook-comments-classification
 # for a full explanation of this code
+# Contact info@ghib.li to access the Smart Text Classification service
 
 #  Print the 100 most recent comments
 import requests
@@ -30,7 +31,7 @@ SERVER = 'https://stc.p.mashape.com'
 TEST_MODEL_NAME = 'test_model_1'
 FORMAT = {'SERVER': SERVER, 'TEST_MODEL_NAME': TEST_MODEL_NAME}
 TEST_TRAINING_FILE = 'facebook_comments.csv' # You need to manually label the comments before training the classifier
-HEADERS = {'X-Mashape-Authorization': '<your own authorization key>'}
+HEADERS = {'X-Mashape-Authorization': '<your own authorization key>'}  # Contact info@ghib.li to access the service
 response = requests.post('%(SERVER)s/%(TEST_MODEL_NAME)s/train' % FORMAT,
                         files={'file': open(TEST_TRAINING_FILE, 'r')}, headers=HEADERS)
 
