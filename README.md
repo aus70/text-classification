@@ -1,4 +1,4 @@
 # Text classification
 
-Retrieve, analyze and classify text from various sources.
+Retrieve, analyze and classify text from various sources.  
 Please refer to the wiki for more details about the code.
