@@ -4,5 +4,5 @@ Please [refer to the front page](http://alessandrousseglioviretta.github.com/tex
 for and introduction and to the [wiki](https://github.com/alessandrousseglioviretta/text-classification/wiki)
 for the technical details.
 
-Only [one file](https://github.com/alessandrousseglioviretta/text-classification/blob/master/facebook_comments.py) 
+[One file only](https://github.com/alessandrousseglioviretta/text-classification/blob/master/facebook_comments.py) 
 is available for this project.
